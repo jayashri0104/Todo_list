@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>My To Do list</title>
+    </head>
+    <body>
+        <h1> task list</h1>
+        <ul>
+            {% for task in tasks%}
+            <li>
+                {{ task.title }}
+                {% comment %} <a href="{% url 'task_create' task.pk %}"> --create  </a>    {% endcomment %}
+                <a href="{% url 'task_update' task.pk %}"> --Edit   </a>   
+                <a href="{% url 'task_delete' task.pk %}">--Delete</a> 
+               
+            </li>
+            {% empty %}
+            <li>No tasks available.</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>

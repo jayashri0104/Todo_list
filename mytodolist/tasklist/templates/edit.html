@@ -1,0 +1,13 @@
+<html>
+<head>
+    <title>Update Task</title>
+</head>
+<body>
+    <h1>Update Task</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <button type="submit">Update</button>
+        <a href="{% url 'list' %}">Cancel</a>
+    </form>
+</body>
+</html>

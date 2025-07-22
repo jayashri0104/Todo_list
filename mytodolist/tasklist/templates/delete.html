@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Confirm Delete</title>
+</head>
+<body>
+    <h1>Delete Task</h1>
+    <p>Are you sure you want to delete "{{ object.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Yes, delete">
+        <a href="{% url 'list' %}">Cancel</a>
+    </form>
+</body>
+</html>
