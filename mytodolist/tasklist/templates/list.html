@@ -2,41 +2,45 @@
     <head>
         <title>My To Do list</title>
     </head>
-    
-    
-       <body>
+    <center>
+    <body style="background-color: #a6e6f7ff;">
+          <section>     
         <h1> Task list</h1>
         <h2><a href="{% url 'task_create' %}">Add New Task</a></h2>
-        <ul>
+        
             {% for task in tasks%}
+           
             <li>
-                {{ task.title }}
-                
-                
-                
-                <form action="{% url 'task_done' task.pk %}" method="post" style="display:inline;">
+                 {% if task.is_done %}
+                         <u> <B><i>{{ task.title }}</i></B></u>
+                        {% else %}
+                         <B><i>{{ task.title }}</i></B>
+                  {% endif %}
+               
+               <form action="{% url 'task_done' task.pk %}" method="post" style="display:inline;">
                     {% csrf_token %}
                     <button type="submit">
+                     
+                        
                         {% if task.is_done %}
-                             &#10007;
+                           <span style="color: red;">(Pending)</span>  &#10007;
                         {% else %}
-                             &#x1F5F9;
+                             <span style="color: green;">(Done)</span>  &#x1F5F9;
                         {% endif %}
                     </button>
+                    
                 </form>
                 <a href="{% url 'task_update' task.pk %}"> <button type="submit"> Edit </button>  </a>   
                 <a href="{% url 'task_delete' task.pk %}"><button type="submit">Delete</button></a> 
              
-                {% if task.is_done %}
-                    (Pending)
-                {% else %}
-                    (Done)
-                {% endif %}
-            </li>
+            
+            </li><br><br>
             {% empty %}
             <li>No tasks available.</li>
+          
             {% endfor %}
-        </ul>
+        </section>
       </body>
-    
+    </center>
+
 </html>

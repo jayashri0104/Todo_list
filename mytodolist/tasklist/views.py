@@ -21,14 +21,14 @@ class UpdateView(UpdateView):
     template_name = "edit.html" 
     success_url = reverse_lazy('list')
     
-class cheack(View):
+class cheackview(View):
     def post(self, request, pk):
         task = get_object_or_404(Task, pk=pk)
         task.is_done = not task.is_done 
         task.save()
         return redirect(reverse_lazy('list'))
 
-class Create(CreateView): 
+class Createview(CreateView): 
     model = Task
     fields = ['title']
     template_name = "create.html" 
